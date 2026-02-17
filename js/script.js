@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const interestRateSlider = document.getElementById('interestRate');
     const loanTenureSlider = document.getElementById('loanTenure');
     
-    const loanAmountDisplay = document.getElementById('loanAmountDisplay');
+    const loanAmountInput = document.getElementById('loanAmountInput');
     const interestRateDisplay = document.getElementById('interestRateDisplay');
     const loanTenureDisplay = document.getElementById('loanTenureDisplay');
     
@@ -346,14 +346,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Calculate EMI
         function calculateEMI() {
-            const principal = parseFloat(loanAmountSlider.value);
+            const principal = parseFloat(loanAmountInput.value) || 0;
             const rate = parseFloat(interestRateSlider.value) / 100 / 12; // Monthly rate
             const tenure = parseFloat(loanTenureSlider.value) * 12; // Months
 
             let emi = 0;
-            if (rate > 0) {
+            if (rate > 0 && principal > 0) {
                 emi = (principal * rate * Math.pow(1 + rate, tenure)) / (Math.pow(1 + rate, tenure) - 1);
-            } else {
+            } else if (principal > 0) {
                 emi = principal / tenure;
             }
 
@@ -361,7 +361,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const totalInterest = totalAmount - principal;
 
             // Update displays
-            loanAmountDisplay.textContent = formatNumber(principal);
+            if (principal >= 100000 && principal <= 100000000) {
+                loanAmountSlider.value = principal;
+            }
             interestRateDisplay.textContent = parseFloat(interestRateSlider.value).toFixed(1);
             loanTenureDisplay.textContent = loanTenureSlider.value;
             
@@ -390,9 +392,41 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Event listeners
         loanAmountSlider.addEventListener('input', function() {
+            loanAmountInput.value = this.value;
             updateSliderColor(this);
+            checkMinimumAmount();
             calculateEMI();
         });
+        loanAmountInput.addEventListener('input', function() {
+            const value = parseInt(this.value) || 0;
+            loanAmountSlider.value = value;
+            updateSliderColor(loanAmountSlider);
+            checkMinimumAmount();
+            calculateEMI();
+        });
+
+        // Check minimum amount and show indicator
+        function checkMinimumAmount() {
+            const value = parseInt(loanAmountInput.value) || 0;
+            let indicator = document.getElementById('minAmountIndicator');
+            
+            if (value < 100000 && value > 0) {
+                if (!indicator) {
+                    indicator = document.createElement('div');
+                    indicator.id = 'minAmountIndicator';
+                    indicator.style.cssText = `
+                        color: #e74c3c;
+                        font-size: 0.9rem;
+                        margin-top: 0.5rem;
+                        font-weight: 500;
+                    `;
+                    loanAmountInput.parentElement.parentElement.appendChild(indicator);
+                }
+                indicator.textContent = 'Less than 1 Lakh EMI is not available';
+            } else if (indicator) {
+                indicator.remove();
+            }
+        }
         interestRateSlider.addEventListener('input', function() {
             updateSliderColor(this);
             calculateEMI();
@@ -403,9 +437,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Initial calculation and colors
+        loanAmountInput.value = loanAmountSlider.value;
         updateSliderColor(loanAmountSlider);
         updateSliderColor(interestRateSlider);
         updateSliderColor(loanTenureSlider);
+        checkMinimumAmount();
         calculateEMI();
     }
 

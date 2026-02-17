@@ -874,6 +874,27 @@ body {
     background: linear-gradient(135deg, #e8f5e8 0%, #fff5e6 100%);
 }
 
+.input-display input[type="number"] {
+    border: none;
+    background: transparent;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    outline: none;
+    width: 100%;
+    padding: 0;
+}
+
+.input-display input[type="number"]::-webkit-inner-spin-button,
+.input-display input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input-display input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 .currency {
     font-size: 1.2rem;
     font-weight: 600;
