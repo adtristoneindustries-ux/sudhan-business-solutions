@@ -57,7 +57,7 @@ body {
 }
 
 .logo {
-    height: 130px;
+    height: 180px;
     width: auto;
     object-fit: contain;
     background: transparent !important;
@@ -67,7 +67,7 @@ body {
     filter: none !important;
     mix-blend-mode: multiply !important;
     opacity: 1 !important;
-    margin: 0;
+    margin-top: 8%;
     padding: 0;
     display: block;
     vertical-align: middle;
@@ -628,6 +628,278 @@ body {
     background: var(--dark-green);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(113, 192, 11, 0.3);
+}
+
+/* Partner Banks Section */
+.partners-section {
+    padding: 80px 0;
+    background: var(--white);
+    overflow: hidden;
+}
+
+.partners-slider {
+    margin-top: 3rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.partners-slider::before,
+.partners-slider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+}
+
+.partners-slider::before {
+    left: 0;
+    background: linear-gradient(to right, var(--white), transparent);
+}
+
+.partners-slider::after {
+    right: 0;
+    background: linear-gradient(to left, var(--white), transparent);
+}
+
+.partners-track {
+    display: flex;
+    gap: 3rem;
+    animation: scroll 60s linear infinite;
+}
+
+.partners-track:hover {
+    animation-play-state: paused;
+}
+
+.partners-track img {
+    height: 80px;
+    width: 120px;
+    object-fit: contain;
+    filter: none;
+    opacity: 1;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.partners-track img:hover {
+    transform: scale(1.1);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-120px * 25 - 3rem * 25));
+    }
+}
+
+@media (max-width: 768px) {
+    .partners-track img {
+        height: 70px;
+        width: 100px;
+    }
+}
+
+/* Services Page - Financial Partners Grid Section */
+.services-partners-section {
+    padding: 80px 0;
+    background: transparent;
+}
+
+.services-partners-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 1rem;
+    margin-top: -1rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.services-partners-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+}
+
+.svc-partner-card {
+    background: transparent;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    border: 1.5px solid #e0e0e0;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: rotateY(90deg);
+}
+
+.svc-partner-card.animate-flip {
+    animation: partnerFlipIn 0.5s ease forwards;
+}
+
+.svc-partner-card:hover {
+    border-color: var(--primary-color, #1a73e8);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.svc-partner-card img {
+    width: 140px;
+    height: 70px;
+    object-fit: contain;
+}
+
+@keyframes partnerFlipIn {
+    from {
+        opacity: 0;
+        transform: rotateY(90deg) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: rotateY(0deg) scale(1);
+    }
+}
+
+@media (max-width: 992px) {
+    .services-partners-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .services-partners-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+    .svc-partner-card {
+        height: 120px;
+        padding: 16px;
+    }
+    .svc-partner-card img {
+        width: 130px;
+        height: 65px;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    .svc-partner-card {
+        height: 110px;
+        padding: 14px;
+    }
+    .svc-partner-card img {
+        width: 120px;
+        height: 60px;
+    }
+}
+
+/* About Page - Lending Partners Grid Section */
+.about-partners-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.about-partners-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 1rem;
+    margin-top: -1rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-partners-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+}
+
+.about-partner-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    height: 100px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.about-partner-card.animate-in {
+    animation: partnerFadeUp 0.5s ease forwards;
+}
+
+.about-partner-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.about-partner-card img {
+    width: 140px;
+    height: 70px;
+    object-fit: contain;
+}
+
+@keyframes partnerFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 992px) {
+    .about-partners-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-partners-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+    .about-partner-card {
+        height: 120px;
+        padding: 16px;
+    }
+    .about-partner-card img {
+        width: 130px;
+        height: 65px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    .about-partner-card {
+        height: 110px;
+        padding: 14px;
+    }
+    .about-partner-card img {
+        width: 120px;
+        height: 60px;
+    }
 }
 
 /* Footer */
@@ -1238,6 +1510,166 @@ input[type="range"]::-moz-range-thumb {
     line-height: 1.6;
 }
 
+/* Owner Section */
+.owner-section {
+    padding: 100px 0;
+    background: var(--white);
+    overflow: hidden;
+}
+
+.owner-content {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.owner-image-wrapper {
+    position: relative;
+    opacity: 0;
+    transform: translateX(-100px) rotate(-5deg);
+    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.owner-image-wrapper.animate {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+}
+
+.owner-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    right: 30px;
+    bottom: 30px;
+    background: conic-gradient(from 0deg, var(--primary-green), var(--accent-yellow), var(--dark-green), var(--primary-green));
+    border-radius: 50%;
+    z-index: -1;
+    animation: spinGlow 8s linear infinite;
+    filter: blur(15px);
+}
+
+@keyframes spinGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.owner-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 8px solid var(--white);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+}
+
+.owner-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+}
+
+.owner-text {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+}
+
+.owner-text.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.owner-text h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.owner-text h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-green), var(--accent-yellow));
+    transition: width 0.8s ease 0.5s;
+}
+
+.owner-text.animate h2::after {
+    width: 100%;
+}
+
+.owner-text h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-black);
+    margin-bottom: 0.5rem;
+}
+
+.owner-title {
+    font-size: 1.2rem;
+    color: var(--accent-yellow);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.owner-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 968px) {
+    .owner-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+    
+    .owner-image-wrapper {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    
+    .owner-image {
+        height: 350px;
+    }
+    
+    .owner-text h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 480px) {
+    .owner-image-wrapper {
+        max-width: 280px;
+    }
+    
+    .owner-image {
+        height: 280px;
+    }
+    
+    .owner-text h2 {
+        font-size: 2rem;
+    }
+    
+    .owner-text h3 {
+        font-size: 1.5rem;
+    }
+}
+
 /* Mission Section */
 .mission-section {
     padding: 100px 0;
@@ -1399,6 +1831,10 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .back-button {
+    position: fixed;
+    top: 90px;
+    left: 20px;
+    z-index: 999;
     background: var(--primary-green);
     color: var(--white);
     border: none;

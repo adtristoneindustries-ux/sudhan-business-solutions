@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.intro-text, .service-card, .highlight-card, .stat-card, .feature-card, .mission-card, .process-step');
+    const animateElements = document.querySelectorAll('.intro-text, .service-card, .highlight-card, .stat-card, .feature-card, .mission-card, .process-step, .owner-image-wrapper, .owner-text');
     animateElements.forEach(el => {
         observer.observe(el);
     });
