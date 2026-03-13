@@ -1830,6 +1830,66 @@ input[type="range"]::-moz-range-thumb {
     z-index: 1000;
 }
 
+/* Floating Apply Now Button */
+.floating-apply-btn {
+    position: fixed;
+    right: -2px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 998;
+    background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+    color: var(--white);
+    border: none;
+    padding: 20px 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    cursor: pointer;
+    border-radius: 8px 0 0 8px;
+    box-shadow: -4px 0 15px rgba(113, 192, 11, 0.4);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    animation: pulseGlow 2s ease-in-out infinite;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+.floating-apply-btn:hover {
+    background: linear-gradient(135deg, var(--accent-yellow), var(--primary-green));
+    box-shadow: -6px 0 25px rgba(245, 171, 16, 0.6);
+    right: 0;
+}
+
+.floating-apply-btn span {
+    display: block;
+    line-height: 1;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: -4px 0 15px rgba(113, 192, 11, 0.4);
+    }
+    50% {
+        box-shadow: -6px 0 25px rgba(245, 171, 16, 0.7);
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-apply-btn {
+        padding: 15px 10px;
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-apply-btn {
+        padding: 12px 8px;
+        font-size: 0.9rem;
+        letter-spacing: 1.5px;
+    }
+}
+
 .back-button {
     position: fixed;
     top: 90px;
