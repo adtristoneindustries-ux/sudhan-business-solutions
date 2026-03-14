@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         // Initialize EmailJS (Add your public key here)
-        emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your EmailJS public key
+        emailjs.init('9wTxyWcA5euVtVQaO'); // Replace with your EmailJS public key
         
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             // Send email using EmailJS
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams) // Replace with your service and template IDs
+            emailjs.send('service_foa3csx', 'template_mthbem8', templateParams) // Replace with your service and template IDs
                 .then(function(response) {
                     showNotification('Thank you! Your message has been sent successfully.', 'success');
                     contactForm.reset();
